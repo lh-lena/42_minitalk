@@ -1,4 +1,4 @@
-#include "minitalk_bonus.h"
+#include "../include/minitalk_bonus.h"
 
 static void	ft_check(int signum)
 {

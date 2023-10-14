@@ -6,11 +6,11 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 22:46:46 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/10/14 19:32:31 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:12:48 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../include/minitalk.h"
 
 // handler that receives information about the signal number, information about the signal delivery, and information about the thread context
 

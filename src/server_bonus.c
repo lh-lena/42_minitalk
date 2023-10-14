@@ -1,4 +1,5 @@
-#include "minitalk_bonus.h"
+
+#include "../include/minitalk_bonus.h"
 
 static void	handle_signal(int signal, siginfo_t *info, void *context)
 {
@@ -12,7 +13,6 @@ static void	handle_signal(int signal, siginfo_t *info, void *context)
 	if (signal == SIGUSR1)
 		byte = byte | (128 >> i);
 	i++;
-	printf("\nBONUS OK\n");
 	if (i == 8)
 	{
 		if (byte)

@@ -6,11 +6,11 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 22:47:49 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/10/14 17:12:07 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:12:37 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../include/minitalk.h"
 
 static void	send_signals(int pid, char c)
 {
