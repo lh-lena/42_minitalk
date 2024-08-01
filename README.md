@@ -4,12 +4,11 @@
 
 #### About
 
-Minitalk is a simple communication program that implements a client-server architecture. The server can receive strings sent by clients, which are transmitted using UNIX signals. The primary objective of the project is to understand signal handling and inter-process communication in a UNIX environment.
+Minitalk is a project that demonstrates inter-process communication using UNIX signals. The project includes a server and a client program, where the client sends messages to the server using signals, and the server acknowledges receipt of these messages.
 
-1. The project involves creating two programs:
-
-2. Server: Receives messages sent by the client.
-
+SIGUSR1 and SIGUSR2 were used for communication because they are user-defined signals, allowing flexible handling of custom tasks.
+Messages are encoded into a sequence of signals. Each character in the message is sent as a series of bits using SIGUSR1 for binary 0 and SIGUSR2 for binary 1.
+For synchronization was used the pause() function to wait for signals, ensuring synchronization between the server and client during message transmission.
 
 #### Mandatory
 
@@ -22,6 +21,15 @@ Minitalk is a simple communication program that implements a client-server archi
 • The server acknowledges every message received by sending back a signal to the
 client.
 • Unicode characters support!
+
+#### Technologies Used
+* C Programming Language:
+	The entire project is implemented in C, leveraging low-level system calls and memory management.
+* POSIX API:
+	Used for signal handling and process control. Functions like sigaction, kill, and getpid are crucial for the implementation.
+* Makefile:
+	A Makefile was created to automate the build process, ensuring that all dependencies are correctly compiled.
+
 
 ### Allowed Functions
 In this project, only a restricted set of functions are allowed, ensuring a deep understanding of low-level operations:
