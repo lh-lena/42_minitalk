@@ -67,8 +67,7 @@ In this project, only a restricted set of functions are allowed, ensuring a deep
 ```C
     ./server 
 ```
-Server will print print its PID.
-The server will continue to listen indefinitely.
+The server will print print its PID and continue to listen indefinitely.
 
 2. Running client:
 ```C
