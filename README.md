@@ -39,7 +39,7 @@ In this project, only a restricted set of functions are allowed, ensuring a deep
 - [`usleep`](https://man7.org/linux/man-pages/man3/usleep.3.html)
 - [`exit`](https://man7.org/linux/man-pages/man3/exit.3.html)
 
-### Installing and running the project:
+### Installing the Project:
 1. Clone the repository:
 ```C
     git clone git@github.com:lh-lena/42_minitalk.git
