@@ -3,138 +3,81 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+         #
+#    By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/09/10 16:45:31 by ohladkov          #+#    #+#              #
-#    Updated: 2023/10/14 23:04:14 by ohladkov         ###   ########.fr        #
+#    Created: 2023/10/15 11:53:32 by ohladkov          #+#    #+#              #
+#    Updated: 2023/10/25 19:20:46 by ohladkov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-# NAMEC	= client
-# NAMECB	= client_bonus
-
-# NAMES	= server
-# NAMESB	= server_bonus
-
-# CC		= cc
-# RM		= rm -f
-# CFLAGS 	= -Wall -Wextra -Werror
-
-# SRCS		= src/client.c src/server.c
-# SRCS_BNS	= src/client_bonus.c src/server_bonus.c
-		
-# OBJS		:= $(SRCS:%.c=%.o)
-# OBJS_BNS	:= $(SRCS_BNS:%.c=%.o)
-
-# all:		$(NAMEC) $(NAMES)
-
-# %.o:	%.c
-# 		$(CC) $(CFLAGS) -Ilibft -Ift_printf -c $? -o $@
-
-# $(NAMEC):	client
-# $(NAMES):	server
-
-# server:		server.o
-# 		@make -C libft
-# 		@make -C ft_printf
-# 		$(CC) $(CFLAGS) $? -Llibft -lft -Lft_printf -lftprintf -o server
-
-# server_bonus:	server_bonus.o
-# 		@make -C libft
-# 		@make -C ft_printf
-# 		$(CC) $(CFLAGS) $? -Llibft -lft -Lft_printf -lftprintf -o server_bonus
-
-# client:		client.o
-# 		@make -C libft
-# 		@make -C ft_printf
-# 		$(CC) $(CFLAGS) $? -Llibft -lft -Lft_printf -lftprintf -o client
-
-# client_bonus:	client_bonus.o
-# 		@make -C libft
-# 		@make -C ft_printf
-# 		$(CC) $(CFLAGS) $? -Llibft -lft -Lft_printf -lftprintf -o client_bonus
-
-# bonus:	$(NAMECB) $(NAMESB)
-
-# $(NAMECB):	client_bonus
-# $(NAMESB):	server_bonus
-
-# libft:
-# 		make -C libft
-
-# printf:
-# 		make -C ft_printf
-
-# clean:
-# 			make clean -C libft
-# 			make clean -C ft_printf
-# 			$(RM) $(OBJS) $(OBJS_BNS)
-
-# fclean:		clean
-# 			$(RM) server client server_bonus client_bonus
-
-# re:			fclean all
-
-# .PHONY:		all clean fclean re bonus
+SRS_DIR 			= ./src
 
 # Server
 SERVER				=	server
-SERVER_SRC			=	./src/server.c
+S_SRC				=	$(SRS_DIR)/server.c
+S_OBJ				=	$(S_SRC:.c=.o)
 
 SERVER_BONUS		=	server_bonus
-SERVER_BONUS_SRC	=	./src/server_bonus.c
+S_BNS_SRC			=	$(SRS_DIR)/server_bonus.c
+S_BNS_OBJ			=	$(S_BNS_SRC:.c=.o)
 
 # Client
 CLIENT				=	client
-CLIENT_SRC			=	./src/client.c
+C_SRC				=	$(SRS_DIR)/client.c
+C_OBJ				=	$(C_SRC:.c=.o)
 
 CLIENT_BONUS		=	client_bonus
-CLIENT_BONUS_SRC	=	./src/client_bonus.c
+C_BNS_SRC			=	$(SRS_DIR)/client_bonus.c
+C_BNS_OBJ			=	$(C_BNS_SRC:.c=.o)
 
-# Libft
+# Libft library
 LIBFT				=	libft.a
 LIBFT_SRC			=	./libft/
 
-# Printf
+# Printf library
 PRINTF				=	libftprintf.a
 PRINTF_SRC			=	./ft_printf/
-
 
 # Compiler
 CC					=	cc
 RM					=	rm -f
 CFLAGS				=	-Wall -Werror -Wextra
 
-# Rules
+# Targets
 all:		$(LIBFT) $(PRINTF) $(SERVER) $(CLIENT)
 
 bonus:		$(LIBFT) $(PRINTF) $(SERVER_BONUS) $(CLIENT_BONUS)
 
 $(LIBFT):
-			@make -C libft
+			@make -C $(LIBFT_SRC)
 
 $(PRINTF):
-			@make -C ft_printf
+			@make -C $(PRINTF_SRC)
 
-$(SERVER):			$(SERVER_SRC)
-					$(CC) $(CFLAGS) $(SERVER_SRC) $(PRINTF_SRC)$(PRINTF) $(LIBFT_SRC)$(LIBFT) -o $(SERVER)
+$(SERVER):	$(S_OBJ)
+	$(CC) $(CFLAGS) $(S_SRC) -o $(SERVER) $(PRINTF_SRC)$(PRINTF) $(LIBFT_SRC)$(LIBFT)
 
-$(SERVER_BONUS):	$(SERVER_BONUS_SRC)
-					$(CC) $(CFLAGS) $(SERVER_BONUS_SRC) $(PRINTF_SRC)$(PRINTF) $(LIBFT_SRC)$(LIBFT) -o $(SERVER_BONUS)
+$(SERVER_BONUS):	$(S_BNS_OBJ)
+	$(CC) $(CFLAGS) $(S_BNS_SRC) -o $(SERVER_BONUS) $(PRINTF_SRC)$(PRINTF) $(LIBFT_SRC)$(LIBFT)
 
-$(CLIENT):			$(CLIENT_SRC)
-					$(CC) $(CFLAGS) $(CLIENT_SRC) $(PRINTF_SRC)$(PRINTF) $(LIBFT_SRC)$(LIBFT) -o $(CLIENT)
+$(CLIENT):	$(C_OBJ)
+	$(CC) $(CFLAGS) $(C_SRC) -o $(CLIENT) $(PRINTF_SRC)$(PRINTF) $(LIBFT_SRC)$(LIBFT)
 
-$(CLIENT_BONUS):	$(CLIENT_BONUS_SRC)
-					$(CC) $(CFLAGS) $(CLIENT_BONUS_SRC) $(PRINTF_SRC)$(PRINTF) $(LIBFT_SRC)$(LIBFT) -o $(CLIENT_BONUS)
+$(CLIENT_BONUS):	$(C_BNS_OBJ)
+	$(CC) $(CFLAGS) $(C_BNS_SRC) -o $(CLIENT_BONUS) $(PRINTF_SRC)$(PRINTF) $(LIBFT_SRC)$(LIBFT)
 
-clean:		
-			$(RM) *.o $(CLIENT) $(SERVER) $(SERVER_BONUS) $(CLIENT_BONUS)
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+clean:
+	@make -C $(LIBFT_SRC) clean
+	@make -C $(PRINTF_SRC) clean
+	$(RM) $(SRS_DIR)/*.o
 
 fclean:		clean
-			@make -C libft fclean
-			@make -C ft_printf fclean
+	@make -C $(LIBFT_SRC) fclean
+	@make -C $(PRINTF_SRC) fclean
+	$(RM) $(CLIENT) $(SERVER) $(SERVER_BONUS) $(CLIENT_BONUS)
 
 re:			fclean all
 
